@@ -2,36 +2,39 @@ package service.impl;
 
 import dto.User;
 import entity.UserEntity;
-import org.modelmapper.ModelMapper;
 import repository.UserDao;
-import repository.impl.UserDaoImpl;
 import service.UserService;
 
 public class UserServiceImpl implements UserService {
-
-    private final UserDao userDao = new UserDaoImpl();
-    private final ModelMapper mapper = new ModelMapper();
+    private UserDao userRepository;
 
     @Override
     public void registerUser(User userDTO) {
 
-        if (userDao.findByEmail(userDTO.getEmail()) != null) {
-            throw new RuntimeException("Email already exists");
-        }
-
-        UserEntity entity = mapper.map(userDTO, UserEntity.class);
-        userDao.save(entity);
     }
 
     @Override
     public boolean isEmailExists(String email) {
-        return userDao.findByEmail(email) != null;
+        return false;
     }
 
     @Override
-    public UserEntity authenticate(String email, String password) {
+    public User authenticate(String email, String password) {
         return null;
     }
 
-    
+    @Override
+    public String getUserFirstName(String email) {
+        return "";
+    }
+
+    public int loginUser(String email, String password) {
+        if (!email.toLowerCase().endsWith("@gmail.com")) {
+            return -1;
+        }
+
+
+
+        return password.equals(User.getPassword()) ? 1 : -2;
+    }
 }

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -16,7 +17,6 @@
          </font>
       </Label>
       <TextField fx:id="txtEmail" layoutX="329.0" layoutY="140.0" text="Email" />
-      <TextField fx:id="txtPassword" layoutX="329.0" layoutY="190.0" text="Password" />
       <JFXButton fx:id="txtSignIn" layoutX="355.0" layoutY="266.0" onAction="#btnSignIn" prefHeight="30.0" prefWidth="97.0" text="Sign In" textFill="#f80b0b">
          <font>
             <Font size="14.0" />
@@ -27,5 +27,6 @@
             <Font size="14.0" />
          </font>
       </JFXButton>
+      <PasswordField fx:id="txtPassword" layoutX="329.0" layoutY="195.0" text="Password" />
    </children>
 </AnchorPane>

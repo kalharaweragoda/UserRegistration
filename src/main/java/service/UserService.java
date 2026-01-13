@@ -2,14 +2,16 @@ package service;
 
 
 import dto.User;
-import entity.UserEntity;
 
 public interface UserService {
     void registerUser(User userDTO);
 
     boolean isEmailExists(String email);
 
-    UserEntity authenticate(String email, String password);
+    User authenticate(String email, String password);
+
+    String getUserFirstName(String email);
 
 
+    int loginUser(String email, String password);
 }

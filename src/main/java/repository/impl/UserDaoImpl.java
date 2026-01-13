@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 
         try {
             TypedQuery<UserEntity> query = em.createQuery(
-                    "SELECT u FROM UserEntity u WHERE u.email = :email AND u.password = :password",
+                    "",
                     UserEntity.class
             );
 

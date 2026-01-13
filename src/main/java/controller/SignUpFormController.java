@@ -6,20 +6,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import service.UserService;
 import service.impl.UserServiceImpl;
 
 public class SignUpFormController {
 
-    @FXML private TextField txtFirstName;
-    @FXML private TextField txtLastName;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtPassword;
-    @FXML private TextField txtReenterPassword;
-    @FXML private JFXButton txtRegister;
-    @FXML private JFXButton txtBackToLogin;
+    @FXML
+    private TextField txtFirstName;
 
-    private final UserService userService = new UserServiceImpl();
+    @FXML
+    private TextField txtLastName;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtPassword;
+
+    @FXML
+    private TextField txtReenterPassword;
+
+    @FXML
+    private JFXButton txtRegister;
+
+    @FXML
+    private JFXButton txtBackToLogin;
+
+    private final UserServiceImpl userService = new UserServiceImpl();
 
     @FXML
     void btnRegister(ActionEvent event) {

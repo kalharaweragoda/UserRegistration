@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="458.0" prefWidth="687.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardFormController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="458.0" layoutX="1.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
-      <Label alignment="CENTER" layoutX="316.0" layoutY="186.0" prefHeight="27.0" prefWidth="222.0" text="WelCome To Kalhara !">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="464.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
+      <Label fx:id="txtlabel" alignment="CENTER" layoutX="316.0" layoutY="186.0" prefHeight="27.0" prefWidth="222.0" text="WelCome To Kalhara !">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="txtlogin" layoutX="391.0" layoutY="269.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Log In">
+      <JFXButton fx:id="txtlogin" layoutX="375.0" layoutY="273.0" onAction="#btnLogIn" prefHeight="25.0" prefWidth="70.0" text="Log In">
          <font>
-            <Font size="14.0" />
+            <Font size="13.0" />
          </font>
-      </Button>
+      </JFXButton>
    </children>
 </AnchorPane>
