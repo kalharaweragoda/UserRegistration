@@ -10,4 +10,6 @@ public interface UserService {
     boolean isEmailExists(String email);
 
     UserEntity authenticate(String email, String password);
+
+
 }

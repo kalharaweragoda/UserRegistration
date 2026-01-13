@@ -33,7 +33,7 @@ public class LoginFormController {
             return;
         }
 
-        if (!isValidGmail(email)) {
+        if (!email.matches("^[A-Za-z0-9._%+-]+@gmail\\.com$")) {
             showAlert(Alert.AlertType.ERROR, "Email must end with @gmail.com");
             return;
         }
@@ -41,10 +41,8 @@ public class LoginFormController {
         UserEntity user = userService.authenticate(email, password);
 
         if (user == null) {
-            showAlert(
-                    Alert.AlertType.INFORMATION,
-                    "User not found. Please Sign Up"
-            );
+            showAlert(Alert.AlertType.INFORMATION,
+                    "User not found. Please create an account");
             navigate("/view/signup_form.fxml");
             return;
         }
@@ -53,14 +51,13 @@ public class LoginFormController {
         navigate("/view/dashboard_form.fxml");
     }
 
-    private boolean isValidGmail(String email) {
-        return email.matches("^[A-Za-z0-9._%+-]+@gmail\\.com$");
-    }
 
     private void navigate(String path) {
         try {
             Stage stage = (Stage) txtEmail.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(path))));
+            stage.setScene(new Scene(
+                    FXMLLoader.load(getClass().getResource(path))
+            ));
         } catch (Exception e) {
             e.printStackTrace();
         }

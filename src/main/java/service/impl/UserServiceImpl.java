@@ -27,4 +27,11 @@ public class UserServiceImpl implements UserService {
     public boolean isEmailExists(String email) {
         return userDao.findByEmail(email) != null;
     }
+
+    @Override
+    public UserEntity authenticate(String email, String password) {
+        return null;
+    }
+
+    
 }
