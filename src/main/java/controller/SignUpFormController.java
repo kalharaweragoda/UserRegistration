@@ -31,7 +31,7 @@ public class SignUpFormController {
     @FXML
     private JFXButton txtBackToLogin;
 
-    private final UserServiceImpl userService = new UserServiceImpl();
+    private UserServiceImpl userService;
 
     @FXML
     void btnRegister(ActionEvent event) {

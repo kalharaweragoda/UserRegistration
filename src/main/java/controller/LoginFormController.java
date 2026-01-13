@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import service.impl.UserServiceImpl;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class LoginFormController {
 
@@ -19,8 +20,11 @@ public class LoginFormController {
     @FXML private PasswordField txtPassword;
     @FXML private JFXButton txtSignIn;
 
-
     private final UserServiceImpl userService;
+
+    // Gmail regex pattern
+    private static final Pattern GMAIL_PATTERN =
+            Pattern.compile("^[a-zA-Z0-9._%+-]+@gmail\\.com$");
 
     public LoginFormController(UserServiceImpl userService) {
         this.userService = userService;
@@ -28,8 +32,21 @@ public class LoginFormController {
 
     @FXML
     void btnSignIn(ActionEvent event) {
-        String email = txtEmail.getText();
+
+        String email = txtEmail.getText().trim();
         String password = txtPassword.getText();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Validation Error", "Please fill all fields.");
+            return;
+        }
+
+        if (!GMAIL_PATTERN.matcher(email).matches()) {
+            showAlert(Alert.AlertType.ERROR,
+                    "Invalid Email", "Only valid @gmail.com emails are allowed.");
+            return;
+        }
 
         int status = userService.loginUser(email, password);
 
@@ -37,26 +54,34 @@ public class LoginFormController {
             case 1:
                 navigateTo("/view/Dashboard.fxml", "Dashboard");
                 break;
+
             case 0:
-                showAlert(Alert.AlertType.CONFIRMATION, "Account Not Found", "Please sign up to continue.");
+                showAlert(Alert.AlertType.CONFIRMATION,
+                        "Account Not Found", "Please sign up to continue.");
                 break;
-            case -1:
-                showAlert(Alert.AlertType.ERROR, "Invalid Email", "Only @gmail.com accounts are allowed.");
-                break;
+
             case -2:
-                showAlert(Alert.AlertType.ERROR, "Login Failed", "Incorrect password.");
+                showAlert(Alert.AlertType.ERROR,
+                        "Login Failed", "Incorrect password.");
                 break;
+
+            default:
+                showAlert(Alert.AlertType.ERROR,
+                        "Login Error", "Unexpected error occurred.");
         }
     }
 
     private void navigateTo(String fxmlPath, String title) {
         try {
             Stage stage = (Stage) txtSignIn.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(fxmlPath))));
+            stage.setScene(new Scene(
+                    FXMLLoader.load(getClass().getResource(fxmlPath))
+            ));
             stage.setTitle(title);
             stage.centerOnScreen();
         } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not load " + title);
+            showAlert(Alert.AlertType.ERROR,
+                    "Navigation Error", "Could not load " + title);
         }
     }
 
