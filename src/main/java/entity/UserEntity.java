@@ -27,7 +27,7 @@ public class UserEntity {
     @Column(nullable = false, length = 50)
     private String password;
 
-    @Column(nullable = false, length = 50)
+    @Transient
     private String reenterPassword;
 
 }

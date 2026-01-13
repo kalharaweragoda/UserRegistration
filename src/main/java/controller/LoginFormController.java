@@ -1,32 +1,72 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
+import entity.UserEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import service.UserService;
+import service.impl.UserServiceImpl;
 
 public class LoginFormController {
-
-    @FXML
-    private JFXButton txtCreateAccount;
 
     @FXML
     private TextField txtEmail;
 
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
+
+    private final UserService userService = new UserServiceImpl();
 
     @FXML
-    private JFXButton txtSignIn;
+    void btnLogin(ActionEvent event) {
 
-    @FXML
-    void btnCreateAccount(ActionEvent event) {
+        String email = txtEmail.getText();
+        String password = txtPassword.getText();
 
+        if (email.isEmpty() || password.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Email and Password required");
+            return;
+        }
+
+        if (!isValidGmail(email)) {
+            showAlert(Alert.AlertType.ERROR, "Email must end with @gmail.com");
+            return;
+        }
+
+        UserEntity user = userService.authenticate(email, password);
+
+        if (user == null) {
+            showAlert(
+                    Alert.AlertType.INFORMATION,
+                    "User not found. Please Sign Up"
+            );
+            navigate("/view/signup_form.fxml");
+            return;
+        }
+
+        showAlert(Alert.AlertType.INFORMATION, "Login Successful");
+        navigate("/view/dashboard_form.fxml");
     }
 
-    @FXML
-    void btnSignIn(ActionEvent event) {
-
+    private boolean isValidGmail(String email) {
+        return email.matches("^[A-Za-z0-9._%+-]+@gmail\\.com$");
     }
 
+    private void navigate(String path) {
+        try {
+            Stage stage = (Stage) txtEmail.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(path))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAlert(Alert.AlertType type, String msg) {
+        new Alert(type, msg).show();
+    }
 }
