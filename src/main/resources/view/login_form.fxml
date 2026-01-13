@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="452.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="452.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
+      <Label layoutX="325.0" layoutY="64.0" text="Login Form" textFill="#357c44">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" layoutX="329.0" layoutY="140.0" text="Email" />
+      <TextField fx:id="txtPassword" layoutX="329.0" layoutY="190.0" text="Password" />
+      <JFXButton fx:id="txtSignIn" layoutX="355.0" layoutY="266.0" onAction="#btnSignIn" prefHeight="30.0" prefWidth="97.0" text="Sign In" textFill="#f80b0b">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="txtCreateAccount" layoutX="347.0" layoutY="309.0" onAction="#btnCreateAccount" prefHeight="30.0" prefWidth="114.0" text="Create Account" textFill="#2f1919">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
